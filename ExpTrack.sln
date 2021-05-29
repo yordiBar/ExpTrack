@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpTrack", "ExpTrack.csproj", "{DF2C3B47-FEAC-4ED0-9254-CAC327F18B20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF2C3B47-FEAC-4ED0-9254-CAC327F18B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2C3B47-FEAC-4ED0-9254-CAC327F18B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2C3B47-FEAC-4ED0-9254-CAC327F18B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2C3B47-FEAC-4ED0-9254-CAC327F18B20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73C3A43F-D862-4482-B1AC-C7AC853C3C4D}
+	EndGlobalSection
+EndGlobal
