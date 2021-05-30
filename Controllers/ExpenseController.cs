@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace ExpTrack.Controllers
 {
-    public class ItemController : Controller
+    public class ExpenseController : Controller
     {
 
         private readonly ApplicationDBContext _db;
 
-        public ItemController(ApplicationDBContext db)
+        public ExpenseController(ApplicationDBContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Item> itemList = _db.Items;
-            return View(itemList);
+            IEnumerable<Expense> expenseList = _db.Expenses;
+            return View(expenseList);
         }
 
         public IActionResult Create()
@@ -30,9 +30,9 @@ namespace ExpTrack.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Item item)
+        public IActionResult Create(Expense expense)
         {
-            _db.Items.Add(item);
+            _db.Expenses.Add(expense);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
