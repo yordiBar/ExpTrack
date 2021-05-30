@@ -12,8 +12,11 @@ namespace ExpTrack.Models
         [Key]
         public int Id { get; set; }
         [DisplayName("Expense")]
+        [Required]
         public string ExpenseName { get; set; }
         [DisplayName("Value")]
+        [Required]
+        [Range(0.01, double.MaxValue, ErrorMessage ="Value Must be greater than 0.01!")]
         public double ExpenseValue { get; set; }
 
     }
