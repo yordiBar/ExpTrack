@@ -23,5 +23,18 @@ namespace ExpTrack.Controllers
             IEnumerable<Item> objList = _db.Items;
             return View(objList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Item item)
+        {
+            _db.Items.Add(item);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
