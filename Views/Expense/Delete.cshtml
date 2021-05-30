@@ -1,10 +1,10 @@
 ﻿@model ExpTrack.Models.Expense
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
     <div class="border p-3">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row">
-            <h2 class="text-black-50 pl-3">Add Expense</h2>
+            <h2 class="text-black-50 pl-3">Delete Expense</h2>
         </div>
         <div class="row">
             <div class="col-12">
@@ -18,21 +18,19 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <input asp-for="ExpenseName" class="form-control" />
-                        <span asp-validation-for="ExpenseName" class="text-danger"></span>
+                        <input asp-for="ExpenseName" disabled class="form-control" />
                     </div>
                     <div class="col-4">
-                        <input asp-for="ExpenseValue" class="form-control" />
-                        <span asp-validation-for="ExpenseValue" class="text-danger"></span>
+                        <input asp-for="ExpenseValue" disabled class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-8 offset-2 row">
                         <div class="col">
-                            <input type="submit" class="btn btn-info w-75" value="Create" />
+                            <input type="submit" class="btn btn-danger w-75" value="Delete" />
                         </div>
                         <div class="col">
-                            <a class="btn btn-danger w-75" asp-action="Index">Back</a>
+                            <a class="btn btn-success w-75" asp-action="Index">Back</a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +40,7 @@
 </form>
 
 @section Scripts {
-    @{ 
+    @{
         <partial name="_ValidationScriptsPartial" />
     }
 }
