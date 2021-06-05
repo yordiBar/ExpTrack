@@ -1,6 +1,8 @@
 ﻿using ExpTrack.Data;
 using ExpTrack.Models;
+using ExpTrack.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,22 +26,34 @@ namespace ExpTrack.Controllers
             return View(expenseList);
         }
 
+        //GET Create
         public IActionResult Create()
         {
-            return View();
+            ExpenseVM expenseVM = new ExpenseVM()
+            {
+                Expense = new Expense(),
+                TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+
+            return View(expenseVM);
         }
 
+        // POST Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Expense expense)
+        public IActionResult Create(ExpenseVM expenseVM)
         {
             if (ModelState.IsValid)
             {
-                _db.Expenses.Add(expense);
+                _db.Expenses.Add(expenseVM.Expense);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(expense);
+            return View(expenseVM);
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,11 @@ namespace ExpTrack.Models
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage ="Value Must be greater than 0.01!")]
         public double ExpenseValue { get; set; }
-
+        
+        
+        [DisplayName("Expense Type")]
+        public int ExpenseTypeId { get; set; }
+        [ForeignKey("ExpenseTypeId")]
+        public virtual ExpenseType ExpenseType { get; set; }
     }
 }
