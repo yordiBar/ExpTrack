@@ -23,6 +23,12 @@ namespace ExpTrack.Controllers
         public IActionResult Index()
         {
             IEnumerable<Expense> expenseList = _db.Expenses;
+
+            foreach(var exp in expenseList)
+            {
+                exp.ExpenseType = _db.ExpenseTypes.FirstOrDefault(e => e.Id == exp.ExpenseTypeId);
+            }
+
             return View(expenseList);
         }
 
@@ -90,29 +96,39 @@ namespace ExpTrack.Controllers
         // Get Update
         public IActionResult Update(int? id)
         {
+            ExpenseVM expenseVM = new ExpenseVM()
+            {
+                Expense = new Expense(),
+                TypeDropDown = _db.ExpenseTypes.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
+
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var expense = _db.Expenses.Find(id);
-            if (expense == null)
+            expenseVM.Expense = _db.Expenses.Find(id);
+            if (expenseVM.Expense == null)
             {
                 return NotFound();
             }
-            return View(expense);
+            return View(expenseVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Expense expense)
+        public IActionResult Update(ExpenseVM expenseVM)
         {
             if (ModelState.IsValid)
             {
-                _db.Expenses.Update(expense);
+                _db.Expenses.Update(expenseVM.Expense);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(expense);
+            return View(expenseVM);
         }
 
     }
